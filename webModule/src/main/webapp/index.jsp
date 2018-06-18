@@ -14,21 +14,21 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
     <script>
-        $( function() {
+        $(function () {
 
-            $('#getForecast').click( function() {
-                var data = { city: "Васюки", date: "20120318" };
-                $.get( "/webModule/getForecast.txt", data, success, "json" );
-            } );
+            $('#getForecast').click(function () {
+                var data = {city: "Васюки", date: "20120318"};
+                $.get("/webModule/rest/weather", data, success, "json");
+            });
 
-            function success( forecastData ) {
+            function success(resultDate) {
                 alert("test");
-                var forecast = forecastData.city + " прогноз на " + forecastData.date;
-                forecast += ": " + forecastData.forecast + ". Максимальная температура: " + forecastData.maxTemp + "C";
-                alert( forecast );
+                var result = resultDate.city + " прогноз на " + resultDate.date;
+                result += ": " + resultDate.caption + ". Максимальная температура: " + resultDate.maxTemp + "C";
+                alert(result);
             }
 
-        } );
+        });
     </script>
 </head>
 <body>
