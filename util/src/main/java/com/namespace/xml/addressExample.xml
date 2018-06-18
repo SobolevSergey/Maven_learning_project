@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<a:address xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="com.namespace.xsd.address "
+           xmlns:a="com.namespace.xsd.address">
+<a:country>Фa</a:country>
+    <a:city>Ggrg</a:city>
+    <a:postcode>7112666</a:postcode>
+    <a:street>Frerttyy</a:street>
+    <a:buildingType>Многоквартирный дом</a:buildingType>
+    <a:buildingNum></a:buildingNum>
+    <a:flatNum></a:flatNum>
+</a:address>

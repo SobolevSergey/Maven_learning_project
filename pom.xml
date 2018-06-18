@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>testProject</groupId>
+    <artifactId>testMainProject</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>First maven project</name>
+
+    <modules>
+        <module>core</module>
+        <module>util</module>
+        <module>webModule</module>
+        <module>dao</module>
+        <module>service</module>
+    </modules>
+
+    <properties>
+        <!-- ad-hoc properties used in the build -->
+        <propByMainProject>true</propByMainProject>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <lib.dir>externalLibs</lib.dir>
+    </properties>
+
+    <!-- SCOPE
+
+        TEST
+        Если зависимость имеет область действия test,
+        то эта зависимость будет использована maven'ом при выполнении компиляции той части проекта,
+        которая содержит тесты, а также при запуске тестов на выполнение и построении отчета с результатами тестирования кода.
+        Попытка сослаться на какой-либо класс или функцию библиотеки в основной части приложения (каталог src/main) вызовет ошибку.
+
+        COMPILE
+        К наиболее часто используемой зависимости относится compile (используется по умолчанию).
+        Т.е. dependency, помеченная как compile, или для которой не указано scope,
+        будет доступна как для компиляции основного приложения и его тестов,
+        так и на стадиях запуска основного приложения или тестов.
+
+        PROVIDED
+        Область действия зависимости provided аналогична compile,
+        за исключением того, что артефакт используется на этапе компиляции и тестирования,
+        а в сборку не включается. Предполагается, что среда исполнения (JDK или WEB-контейнер)
+        предоставят данный артефакт во время выполнения программы.
+        Наглядным примером подобных артефактов являются такие библиотеки, как hibernate или jsf, которые необходимы на этапе разработки приложения.
+
+        RUNTIME
+        Область действия зависимости runtime не нужна для компиляции проекта и используется только на стадии выполнения приложения.
+
+        SYSTEM
+        Область действия зависимости system аналогична provided за исключением того,
+        что содержащий зависимость артефакт указывается явно в виде абсолютного пути к файлу,
+        определенному в теге systemPath. Обычно к таким артефактам относятся собственные наработки,
+        и искать их в центральном репозитории не имеет смысла
+     -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Dependency Stuff -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.10</version>
+                <scope>test</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>8.0</version>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!--
+    dependency:list – выводит список зависимостей и области их действия scope;
+
+    dependency:tree – выводит иерархический список зависимостей и области их действия scope;
+
+    dependency:purge-local-repository – служит для удаления из локального репозитория всех артефактов,
+    от которых прямо или косвенно зависит проект. После этого удаленные артефакты загружаются из Internet заново.
+    Это может быть полезно в том случае, когда какой-либо артефакт был загружен со сбоями.
+    В этом случае проще очистить локальный репозиторий и попробовать загрузить библиотеки заново;
+
+    dependency:sources - служит для загрузки из центральных репозиториев исходников для всех артефактов,
+    используемых в проекте. Порой отлаживая код,
+    часто возникает необходимость подсмотреть исходный код какой-либо библиотеки;
+
+    dependency:copy-dependencies - копирует зависимости/артефакты в поддиректорию target/dependency;
+
+    dependency:get - копирует зависимость в локальный репозиторий.
+    -->
+
+    <build>
+        <!-- Build Configuration  -->
+        <finalName>${project.artifactId}</finalName>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+        <outputDirectory>${basedir}/target</outputDirectory>
+
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.cfg.xml</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/exRes</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+
+       <!--     <resource>
+                <directory>${basedir}/web</directory>
+                <includes>
+                    <include>**/*.jsp</include>
+                    <include>**/*.txt</include>
+                </includes>
+                <targetPath>web/</targetPath>
+            </resource> -->
+        </resources>
+
+        <plugins>
+            <!-- plugin configuration -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>id.prepare-package</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <echo>prepare-packages phase ${propByMainProject}</echo>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <verbose>true</verbose>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <!--Если надо конфигурировать манифест, то здесь-->
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <!--путь к зависимостям относительно запускаемого jar файла-->
+                            <!--ВСЕ ЗАВИСИМОСТИ ДОЛЖНЫ БУДУТ ПОСТАВЛЯТЬСЯ С jar приложением. -->
+                            <classpathPrefix>${lib.dir}/</classpathPrefix>
+                            <!--  <classpathLayoutType>simple</classpathLayoutType> -->
+                            <mainClass>com.testProject.Main</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>.</Class-Path>
+                        </manifestEntries>
+                        <!--<manifestEntries>-->
+                        <!--<Rsrc-Class-Path>${}</Rsrc-Class-Path>-->
+                        <!--</manifestEntries>-->
+
+                    </archive>
+                </configuration>
+            </plugin>
+
+          <!-- todo: Закомментировано для того, чтобы копировались зависимости только в модуле web, чтобы итоговый архив весил меньше.
+
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.5.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${lib.dir}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin> -->
+
+            <!--
+            <outputDirectory> описывает целевую директорию, в которую будет происходить копирование.
+            В блоке <resources> перечисляются объекты для копирования.
+            Синтаксис перечисления объектов для включения/исключения аналогичен используемому в Maven JAR Plugin.
+            Если у вас есть некоторый текстовый ресурс hello.txt с содержимым вида Hello ${name},
+            то в результате копирования этого ресурса с флагом filtering = true,
+            в созданной копии значение ${name} будет заменено названием проекта указанным в pom.xml.
+            Авторы рекомендуют не использовать filtering с бинарными файлами вроде изображений.
+            -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <!-- here the phase you need -->
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/extra-resources</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/extraResources</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>temp.txt</include>
+                                    </includes>
+                                    <excludes>
+                                        <exclude>example.jar</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- build profiles -->
+    </profiles>
+
+</project>

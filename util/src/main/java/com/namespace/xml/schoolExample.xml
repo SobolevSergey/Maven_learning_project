@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type='text/xsl' href='school.xsl'?>
+<a:school
+        xmlns:a="com/namespace/xsd/school.xsd"
+        xmlns:ad="com/namespace/xsd/address.xsd"
+        xmlns:st="com/namespace/xsd/student.xsd">
+    <ad:address>
+        <ad:country>Россия</ad:country>
+        <ad:city>Дубна</ad:city>
+        <ad:postcode>1414111</ad:postcode>
+        <ad:street>Пкпкуп</ad:street>
+        <ad:buildingType>SEPARATE_STRUCTURE</ad:buildingType>
+        <ad:buildingNum>35235</ad:buildingNum>
+        <ad:flatNum>352352352</ad:flatNum>
+    </ad:address>
+    <a:students>
+        <st:student>
+            <st:firstName>Тест</st:firstName>
+            <st:lastName>Testest</st:lastName>
+            <st:patronymic>Testetstes</st:patronymic>
+            <st:birthDate>2002-05-30T09:00:00</st:birthDate>
+            <ad:address>
+                <ad:country>Россия</ad:country>
+                <ad:city>Дубна</ad:city>
+                <ad:postcode>1414111</ad:postcode>
+                <ad:street>Пкпкуп</ad:street>
+                <ad:buildingType>SEPARATE_STRUCTURE</ad:buildingType>
+                <ad:buildingNum>33</ad:buildingNum>
+                <ad:flatNum>23</ad:flatNum>
+            </ad:address>
+        </st:student>
+
+        <st:student>
+            <st:firstName>Тестegre</st:firstName>
+            <st:lastName>Testestergerg</st:lastName>
+            <st:patronymic>Testetsgeegegegtes</st:patronymic>
+            <st:birthDate>2003-05-30T09:00:00</st:birthDate>
+            <ad:address>
+                <ad:country>Россия</ad:country>
+                <ad:city>Дубна</ad:city>
+                <ad:postcode>1414111</ad:postcode>
+                <ad:street>Пкпкуп</ad:street>
+                <ad:buildingType>SEPARATE_STRUCTURE</ad:buildingType>
+                <ad:buildingNum>34</ad:buildingNum>
+                <ad:flatNum>24</ad:flatNum>
+            </ad:address>
+        </st:student>
+
+        <st:student>
+            <st:firstName>Тwefwefст</st:firstName>
+            <st:lastName>Tgewgegwgggstest</st:lastName>
+            <st:patronymic>Testgewgegtstes</st:patronymic>
+            <st:birthDate>2004-05-30T09:00:00</st:birthDate>
+            <ad:address>
+                <ad:country>Россия</ad:country>
+                <ad:city>Дубна</ad:city>
+                <ad:postcode>1414111</ad:postcode>
+                <ad:street>Пкпкуп</ad:street>
+                <ad:buildingType>SEPARATE_STRUCTURE</ad:buildingType>
+                <ad:buildingNum>35</ad:buildingNum>
+                <ad:flatNum>25</ad:flatNum>
+            </ad:address>
+        </st:student>
+    </a:students>
+</a:school>

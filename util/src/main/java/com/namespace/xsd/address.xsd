@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="com/namespace/xsd/address.xsd"
+           xmlns:tns="com/namespace/xsd/address.xsd"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:simpleType name="buildingTypes">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="APARTMENT"/>
+            <xs:enumeration value="SEPARATE_STRUCTURE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="address">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="country">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:pattern value="[A-ZА-Я][a-zа-я]+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="city">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:pattern value="[A-ZА-Я][a-zа-я]+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="postcode">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:pattern value="\d{6,}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="street">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:pattern value="[A-ZА-Я][a-zа-я]+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="buildingType" type="tns:buildingTypes"/>
+            <xs:element name="buildingNum" type="xs:string"/>
+            <xs:element name="flatNum" type="xs:string" nillable="true" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    </xs:element>
+</xs:schema>

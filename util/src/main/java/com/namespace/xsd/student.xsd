@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ad="com/namespace/xsd/address.xsd"
+           targetNamespace="com/namespace/xsd/student.xsd"
+           elementFormDefault="qualified">
+    <xs:import namespace="com/namespace/xsd/address.xsd" schemaLocation="address.xsd"/>
+
+    <xs:element name="student">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="firstName">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="2"/>
+                            <xs:pattern value="[A-ZА-Я][a-zа-я]+"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="lastName">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="2"/>
+                            <xs:pattern value="[A-ZА-Я][a-zа-я]+"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="patronymic">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="2"/>
+                            <xs:pattern value="[A-ZА-Я][a-zа-я]+"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="birthDate" type="xs:dateTime"/>
+                <xs:element ref="ad:address"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="com/namespace/xsd/school.xsd"
+           xmlns:ad="com/namespace/xsd/address.xsd"
+           xmlns:st="com/namespace/xsd/student.xsd"
+           elementFormDefault="qualified">
+    <xs:import namespace="com/namespace/xsd/address.xsd" schemaLocation="address.xsd"/>
+    <xs:import namespace="com/namespace/xsd/student.xsd" schemaLocation="student.xsd"/>
+
+    <xs:element name="school">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ad:address"/>
+                <xs:element name="students">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="st:student" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
