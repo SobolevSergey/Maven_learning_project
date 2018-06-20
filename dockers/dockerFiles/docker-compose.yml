@@ -1,0 +1,72 @@
+version: '2'
+services:
+
+  postgres:
+    image: postgres:10.0-alpine
+#    ports:
+#      - "5432:5432"
+    expose: [5432]
+    volumes:
+      - /home/programmer/IdeaProjects/postgresqlFiles/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    command: postgres -c shared_buffers=4096MB -c effective_cache_size=1536MB -c work_mem=2621kB -c maintenance_work_mem=128MB
+    shm_size: '1gb'
+    networks:
+      mynetwork:
+        aliases:
+          - db1.internal.example.com
+
+  web:
+    build: ./jboss/wildfly
+#    ports:
+#      - "8080:8080"
+#      - "9990:9990"
+    depends_on:
+      - postgres
+    volumes:
+      - /home/programmer/IdeaProjects/deployedWars:/opt/jboss/wildfly/standalone/deployments/
+    links:
+      - postgres
+    environment:
+      - DEBUG=true
+    # Expose http and admin ports
+    expose: [8080, 9990, 8787]
+    networks:
+      mynetwork:
+        aliases:
+          - web1.internal.example.com
+      extnetwork:
+        aliases:
+          - web.external.example.com
+    command: bash -c "/opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 --debug"
+
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - web
+    volumes:
+      - /home/programmer/IdeaProjects/dockers/nginx/static_files:/static_files
+    networks:
+      extnetwork:
+        aliases:
+          - proxy.external.example.com
+
+volumes:
+  postgres:
+  web:
+  nginx:
+
+networks:
+  mynetwork:
+    driver: bridge
+  extnetwork:
+    driver: bridge
+
+
