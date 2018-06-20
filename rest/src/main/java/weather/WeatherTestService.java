@@ -1,4 +1,4 @@
-package rest.weather;
+package weather;
 
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;

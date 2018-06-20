@@ -1,4 +1,4 @@
-package ws.document.server;
+package document.server;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;

@@ -16,6 +16,8 @@
         <module>webModule</module>
         <module>dao</module>
         <module>service</module>
+        <module>rest</module>
+        <module>soap</module>
     </modules>
 
     <properties>

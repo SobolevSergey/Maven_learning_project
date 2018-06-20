@@ -8,7 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="core" />
         <module name="dao" />
+        <module name="rest" />
         <module name="service" />
+        <module name="soap" />
         <module name="util" />
         <module name="webModule" />
       </profile>

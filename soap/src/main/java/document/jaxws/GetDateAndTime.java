@@ -1,5 +1,5 @@
 
-package ws.document.jaxws;
+package document.jaxws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

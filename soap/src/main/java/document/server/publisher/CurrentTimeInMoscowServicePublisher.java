@@ -1,6 +1,6 @@
-package ws.document.server.publisher;
+package document.server.publisher;
 
-import ws.document.server.impl.CurrentTimeInMoscowImpl;
+import document.server.impl.CurrentTimeInMoscowImpl;
 
 import javax.xml.ws.Endpoint;
 

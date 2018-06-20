@@ -1,6 +1,6 @@
-package ws.document.client;
+package document.client;
 
-import ws.document.server.CurrentTimeInMoscowService;
+import document.server.CurrentTimeInMoscowService;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;

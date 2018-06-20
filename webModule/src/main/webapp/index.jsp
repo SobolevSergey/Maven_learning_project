@@ -18,7 +18,7 @@
 
             $('#getForecast').click(function () {
                 var data = {city: "Васюки", date: "20120318"};
-                $.get("/webModule/rest/weather", data, success, "json");
+                $.get("/rest/weather", data, success, "json");
             });
 
             function success(resultDate) {
