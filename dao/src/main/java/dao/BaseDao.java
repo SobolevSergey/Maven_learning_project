@@ -34,41 +34,6 @@ public abstract class BaseDao<T extends Model> {
         return entityClass;
     }
 
-    /*
-    static {
-        try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-            ourSessionFactory = configuration.buildSessionFactory();
-           // entityManager = ourSessionFactory.createEntityManager();
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-
-
-    protected static Session getSession() throws HibernateException {
-        return ourSessionFactory.openSession();
-    }
-
-    public static void main(final String[] args) throws Exception {
-        final Session session = getSession();
-        try {
-            System.out.println("querying all the managed entities...");
-            final Metamodel metamodel = session.getSessionFactory().getMetamodel();
-            for (EntityType<?> entityType : metamodel.getEntities()) {
-                final String entityName = entityType.getName();
-                final Query query = session.createQuery("from " + entityName);
-                System.out.println("executing: " + query.getQueryString());
-                for (Object o : query.list()) {
-                    System.out.println("  " + o);
-                }
-            }
-        } finally {
-            session.close();
-        }
-    }
-        */
 
     public Collection<T> getAll() {
         CriteriaQuery<T> criteriaQuery = entityManager.getCriteriaBuilder().createQuery(entityClass);
@@ -99,6 +64,7 @@ public abstract class BaseDao<T extends Model> {
         return result;
     }
 
+    @Transactional
     public boolean delete(T entity) {
         entityManager.remove(entity);
         return true;
