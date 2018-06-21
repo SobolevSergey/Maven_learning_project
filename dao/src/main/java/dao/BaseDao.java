@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Objects;
 
 public abstract class BaseDao<T extends Model> {
     @PersistenceContext(unitName = "ExampleDS")
@@ -60,8 +61,12 @@ public abstract class BaseDao<T extends Model> {
 
     @Transactional
     public T update(T entity) {
-        T result = entityManager.merge(entity);
-        return result;
+        if(Objects.nonNull(entity)) {
+            T result = entityManager.merge(entity);
+            return result;
+        }
+        System.out.println("Merge Error");
+        return null;
     }
 
     @Transactional

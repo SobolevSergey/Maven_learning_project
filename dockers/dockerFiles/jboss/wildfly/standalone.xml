@@ -144,7 +144,7 @@
             <datasources>
                 <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
                     <connection-url>jdbc:postgresql://db1.internal.example.com:5432/postgres</connection-url>
-                    <driver>webModule.war_org.postgresql.Driver_42_2</driver>
+                    <driver>rest.war_org.postgresql.Driver_42_2</driver>
                     <security>
                         <user-name>postgres</user-name>
                         <password>postgres</password>
