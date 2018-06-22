@@ -13,10 +13,4 @@ public class UserDao extends BaseDao<User> {
         super(User.class);
     }
 
-
-    @Override
-    protected String getIdColumnName() {
-        return "login";
-    }
-
 }

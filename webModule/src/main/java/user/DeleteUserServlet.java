@@ -1,8 +1,12 @@
 package user;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(urlPatterns = "/delete/*", loadOnStartup = 4,
         asyncSupported = true)
@@ -24,6 +28,16 @@ public class DeleteUserServlet extends HttpServlet {
         response.sendRedirect("users/");
     }
     */
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+        String loginParam = request.getParameter("login");
+        if (loginParam != null) {
+            String responseString = RequestProcessor
+                    .sendGetRequestToUserRestService(RequestProcessor.userRestServiceBaseUrl + "delete/" + loginParam);
+        }
+        response.sendRedirect("users/");
+    }
 
     public void init(ServletConfig config) {
         System.out.println("DeleteUser servlet has been initialized");

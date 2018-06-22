@@ -25,6 +25,11 @@ public abstract class BaseServiceImpl<T extends Model, Dao extends BaseDao<T>> i
     }
 
     @Override
+    public T save(T object) {
+        return getDao().save(object);
+    }
+
+    @Override
     public boolean deleteById(Serializable object) {
         return getDao().deleteById(object);
     }

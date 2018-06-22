@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ut:users
+        xmlns:ut="http://proxy.external.example.com/usersToImport.xsd"
+        xmlns:u="http://proxy.external.example.com/user.xsd">
+    <u:user>
+        <u:login>admin</u:login>
+        <u:password>admin12345</u:password>
+        <u:birthDate>1980-05-30</u:birthDate>
+    </u:user>
+
+    <u:user>
+        <u:login>baseUser</u:login>
+        <u:password>baseUser1234</u:password>
+        <u:birthDate>1980-07-30</u:birthDate>
+    </u:user>
+
+    <u:user>
+        <u:login>guest</u:login>
+        <u:password>1111111</u:password>
+        <u:birthDate>2000-05-30</u:birthDate>
+    </u:user>
+</ut:users>

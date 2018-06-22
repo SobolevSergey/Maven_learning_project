@@ -11,6 +11,7 @@ public interface BaseService<E extends Model,Dao extends BaseDao<E>> {
     E getById(Serializable id);
     E update(E object);
     boolean deleteById(Serializable pk);
+    E save(E object);
 
     Dao getDao();
 }

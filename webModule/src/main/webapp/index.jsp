@@ -35,10 +35,11 @@
 <div style="text-align: center;">
     <h1>Users Management</h1>
     <h2>
-        <a href="/new">Add New User</a>
-        &nbsp;&nbsp;&nbsp;
-        <a href="/list">List All Users</a>
         <button id="getForecast">Получить прогноз погоды</button>
+        <form method="post" action="importuser" enctype="multipart/form-data">
+            Choose a file: <input type="file" name="multiPartFile" />
+            <input type="submit" value="Upload" />
+        </form>
     </h2>
 </div>
 <div align="center">

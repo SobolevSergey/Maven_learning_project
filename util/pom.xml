@@ -19,10 +19,15 @@
             <version>1.0-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Генерация классов по XSD схеме.
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
@@ -43,11 +48,13 @@
                         <source>${basedir}/src/main/java/com/namespace/xsd/address.xsd</source>
                         <source>${basedir}/src/main/java/com/namespace/xsd/student.xsd</source>
                         <source>${basedir}/src/main/java/com/namespace/xsd/school.xsd</source>
+                        <source>${basedir}/src/main/java/com/namespace/xsd/user.xsd</source>
+                        <source>${basedir}/src/main/java/com/namespace/xsd/usersToImport.xsd</source>
                     </sources>
                     <outputDirectory>generatedClasses</outputDirectory>
                     <packageName>com.testProject.genClasses</packageName>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 
