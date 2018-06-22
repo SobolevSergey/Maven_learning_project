@@ -1,7 +1,5 @@
 package dto;
 
-import com.testProject.generatedClasses.com.testProject.genClasses.User;
-
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +50,7 @@ public class ManyUsersDto {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link User }
+     * {@link UserDto }
      */
     public List<UserDto> getUsers() {
         if (users == null) {

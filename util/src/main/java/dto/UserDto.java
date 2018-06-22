@@ -2,7 +2,6 @@ package dto;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
